@@ -25,7 +25,7 @@ with sync_playwright() as p:
     elif mode=='search':
         out={}
         for q in sys.argv[3:]:
-            for kind in ('pages','videos'):
+            for kind in ('videos',):
                 pg.goto('https://www.facebook.com/search/%s/?q=%s'%(kind,q.replace(' ','%20')),wait_until='domcontentloaded'); time.sleep(5)
                 for _ in range(3): pg.mouse.wheel(0,3000); time.sleep(2)
                 txt=pg.inner_text('body')
@@ -39,14 +39,15 @@ with sync_playwright() as p:
     elif mode=='reels':
         url=sys.argv[3]; pg.goto(url,wait_until='domcontentloaded'); time.sleep(6)
         seen={}; stale=0
-        while stale<6:
+        while stale<8:
             items=pg.eval_on_selector_all('a[href*="/reel/"]','els=>els.map(e=>[e.href,e.innerText])')
             n=len(seen)
             for h,t in items:
                 m=re.search(r'/reel/(\d+)',h)
                 if m: seen.setdefault(m.group(1),t.strip())
             stale = stale+1 if len(seen)==n else 0
-            pg.mouse.wheel(0,4000); time.sleep(2.5)
-        print(pg.url, file=sys.stderr)
+            pg.mouse.move(640,800); pg.mouse.wheel(0,4000)
+            pg.evaluate('window.scrollTo(0, document.body.scrollHeight)'); pg.keyboard.press('End'); time.sleep(3)
+        print(pg.url, file=sys.stderr); pg.screenshot(path='last.png')
         json.dump([{'id':k,'tile':v} for k,v in seen.items()],sys.stdout,ensure_ascii=False)
     b.close()
