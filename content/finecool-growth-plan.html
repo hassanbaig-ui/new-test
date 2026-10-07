@@ -1,0 +1,560 @@
+<title>FineCool Growth Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap">
+<style>
+/* Layout: one readable column, sticky section nav, workshop-sheet cards. Ice-blue = cooling, signal red = Urdu sticker bar. */
+:root{
+  --bg:#f3f6f8; --paper:#ffffff; --ink:#14212b; --muted:#566673; --line:#d6dee4;
+  --ice:#0a76b8; --ice-soft:#e2f0f9; --red:#d8253f; --red-soft:#fde7ea;
+  --good:#1e8a4c; --good-soft:#e3f4ea; --warn:#b86e00; --warn-soft:#fdf1dc;
+  --sherry:#7a3fc4; --sherry-soft:#efe6fb; --mgr:#0a76b8; --mgr-soft:#e2f0f9;
+  --f-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --f-urdu:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Urdu Typesetting",serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f171d; --paper:#16212a; --ink:#e6eef3; --muted:#9aaab6; --line:#2a3944;
+  --ice:#4fb3ef; --ice-soft:#123246; --red:#ff5a70; --red-soft:#3a1820;
+  --good:#4fcf86; --good-soft:#123222; --warn:#f0a53a; --warn-soft:#3a2a10;
+  --sherry:#b993f0; --sherry-soft:#2c2140; --mgr:#4fb3ef; --mgr-soft:#123246; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f171d; --paper:#16212a; --ink:#e6eef3; --muted:#9aaab6; --line:#2a3944;
+  --ice:#4fb3ef; --ice-soft:#123246; --red:#ff5a70; --red-soft:#3a1820;
+  --good:#4fcf86; --good-soft:#123222; --warn:#f0a53a; --warn-soft:#3a2a10;
+  --sherry:#b993f0; --sherry-soft:#2c2140; --mgr:#4fb3ef; --mgr-soft:#123246; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding-inline:16px;padding-block:0 64px}
+h1,h2,h3{font-family:var(--f-display);line-height:1.1;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.4rem,7vw,3.6rem);font-weight:800;letter-spacing:.01em}
+h2{font-size:clamp(1.7rem,4.5vw,2.2rem);font-weight:700;margin-bottom:.5rem}
+h3{font-size:1.35rem;font-weight:700}
+p{margin:.4rem 0 .8rem}
+.eyebrow{font:600 .78rem/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.ur{font-family:var(--f-urdu);direction:rtl;line-height:2.2}
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.top .in{max-width:900px;margin:0 auto;padding-inline:16px;display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+nav.top a{flex:none;font:600 .9rem var(--f-body);color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--paper)}
+nav.top a:hover,nav.top a:focus-visible{color:var(--ink);border-color:var(--ice);outline:none}
+/* hero */
+header.hero{padding-block:36px 8px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+header.hero .lede{font-size:1.15rem;color:var(--muted);max-width:56ch}
+.gauge{display:flex;gap:14px;align-items:flex-end}
+.therm{width:46px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.therm .tube{width:18px;height:120px;border-radius:9px;background:var(--line);position:relative;overflow:hidden}
+.therm .fill{position:absolute;bottom:0;left:0;right:0;border-radius:9px}
+.therm .bulb{width:30px;height:30px;border-radius:50%;margin-top:-10px}
+.therm .lbl{font:700 1.4rem var(--f-display)}
+.therm small{font-size:.75rem;color:var(--muted)}
+.hot .fill,.hot .bulb{background:var(--red)} .cold .fill,.cold .bulb{background:var(--ice)}
+@media (max-width:620px){header.hero{grid-template-columns:1fr}.gauge{justify-content:flex-start}}
+section{margin-top:44px;scroll-margin-top:64px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.grid2>*{min-width:0}
+.callout{border-left:4px solid var(--ice);background:var(--ice-soft);padding:14px 18px;border-radius:0 8px 8px 0}
+.callout.red{border-color:var(--red);background:var(--red-soft)}
+.callout.good{border-color:var(--good);background:var(--good-soft)}
+ul,ol{padding-left:1.2rem;margin:.3rem 0 .8rem} li{margin:.25rem 0}
+/* role chips */
+.chip{display:inline-block;font:700 .72rem/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:999px;vertical-align:middle;white-space:nowrap}
+.chip.s{background:var(--sherry-soft);color:var(--sherry)} .chip.m{background:var(--mgr-soft);color:var(--mgr)}
+.chip.ok{background:var(--good-soft);color:var(--good)} .chip.no{background:var(--red-soft);color:var(--red)} .chip.w{background:var(--warn-soft);color:var(--warn)}
+.rolecard h3{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.rolecard.s{border-top:4px solid var(--sherry)} .rolecard.m{border-top:4px solid var(--mgr)}
+/* tables */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.95rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 .78rem var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.you td{background:var(--ice-soft);font-weight:600}
+/* bar chart */
+.bars{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:end;height:220px;padding:10px 4px 0;border-bottom:1px solid var(--line)}
+.bar{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:6px;min-width:0}
+.bar .v{font:500 .85rem var(--f-mono);color:var(--ink)}
+.bar .b{width:70%;max-width:70px;background:var(--ice);border-radius:4px 4px 0 0}
+.bar.dip .b{background:var(--warn)}
+.bars-x{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;font-size:.82rem;color:var(--muted);text-align:center;padding-top:6px}
+/* formula steps */
+.steps{display:grid;gap:10px;counter-reset:s}
+.step{display:grid;grid-template-columns:86px 1fr;gap:14px;align-items:start}
+.step .t{font:700 1rem var(--f-mono);color:var(--ice);padding-top:3px}
+.step>div{min-width:0}
+/* sticker preview */
+.sticker{display:inline-block;background:var(--red);color:#fff;font-family:var(--f-urdu);direction:rtl;font-size:1.05rem;line-height:2;padding:2px 14px;border-radius:4px}
+/* days */
+.day{background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.day+.day{margin-top:16px}
+.day-h{display:flex;gap:14px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.day-h .d{font:800 1.8rem/1 var(--f-display);color:var(--ice);min-width:2.2ch}
+.day-h .meta{flex:1;min-width:200px}
+.day-h .meta .k{font-size:.85rem;color:var(--muted)}
+.day-b{padding:14px 18px;display:grid;gap:12px}
+.day-b .row{display:grid;grid-template-columns:130px 1fr;gap:12px}
+.day-b .row>div{min-width:0}
+.day-b .row .lab{font:600 .78rem var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:4px}
+@media (max-width:560px){.day-b .row,.step{grid-template-columns:1fr;gap:4px}}
+.lines{margin:0;padding-left:0;list-style:none;display:grid;gap:6px}
+.lines li{background:var(--bg);border-radius:6px;padding:8px 12px}
+.lines .ts{font:500 .8rem var(--f-mono);color:var(--muted);margin-right:8px}
+.done-toggle{display:flex;align-items:center;gap:8px;font-weight:600;font-size:.9rem;cursor:pointer;user-select:none}
+.done-toggle input{width:20px;height:20px;accent-color:var(--good)}
+.day.is-done{opacity:.6}
+/* scenario */
+.scn{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.scn .card{min-width:0}
+.scn .big{font:800 2rem/1 var(--f-display)}
+.scn .card.low{border-top:4px solid var(--warn)} .scn .card.mid{border-top:4px solid var(--ice)} .scn .card.high{border-top:4px solid var(--good)}
+.dodont{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.dodont .card{min-width:0}
+.copybox{display:flex;gap:10px;align-items:flex-start;background:var(--bg);border:1px dashed var(--line);border-radius:8px;padding:12px}
+.copybox pre{margin:0;flex:1;white-space:pre-wrap;font:500 .88rem/1.55 var(--f-mono);min-width:0}
+button{font:600 .85rem var(--f-body);border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:6px;padding:6px 12px;cursor:pointer}
+button:hover,button:focus-visible{border-color:var(--ice);outline:none}
+footer{margin-top:56px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);padding-top:16px}
+@media (prefers-reduced-motion:no-preference){.therm .fill{transition:height .8s ease}}
+</style>
+
+<nav class="top" aria-label="Sections"><div class="in">
+  <a href="#summary">Summary</a><a href="#roles">Who does what</a><a href="#data">What the data says</a><a href="#rivals">Competitors</a><a href="#formula">Video formula</a><a href="#week">7-day plan</a><a href="#rules">Rules</a><a href="#benefit">Benefits</a><a href="#grow">New opportunities</a><a href="#track">Tracking</a>
+</div></nav>
+
+<div class="wrap">
+
+<header class="hero">
+  <div>
+    <div class="eyebrow">FineCool Car AC · Multan · Plan from 7 Oct 2026</div>
+    <h1>FineCool Growth Plan</h1>
+    <p class="lede">How FineCool goes from about 5,000 views per reel to 20,000+ and turns those views into AC customers. Built from FineCool's 108 reels and 6 competitor pages. Written for Sherry (owner, on camera) and the media manager (social media and online marketing).</p>
+  </div>
+  <div class="gauge" aria-label="Every video ends on the cooling result: from 18 degrees to 8 degrees">
+    <div class="therm hot"><div class="tube"><div class="fill" style="height:78%"></div></div><div class="bulb"></div><div class="lbl mono">18°</div><small>before</small></div>
+    <div class="therm cold"><div class="tube"><div class="fill" style="height:32%"></div></div><div class="bulb"></div><div class="lbl mono">8°</div><small>after</small></div>
+  </div>
+</header>
+
+<!-- SUMMARY -->
+<section id="summary">
+  <h2>The one-minute summary</h2>
+  <div class="grid2">
+    <div class="card">
+      <div class="eyebrow">Where we are</div>
+      <ul>
+        <li><b>108 reels</b> posted, 23 Jun to 6 Oct 2026.</li>
+        <li>Typical reel went from <b>about 400 views</b> (June–July) to <b>about 8,000</b> (September). The switch to Sherry on camera doing real jobs caused this.</li>
+        <li>Hits: <b>1.3M</b> (modified Mehran), <b>292K</b> (1993 Land Cruiser), <b>246K</b> (Alto compressor bearing), <b>157K</b> (Mehran repair).</li>
+        <li>Since 25 Sep the typical reel dropped to <b>about 5,400</b>.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Why it's stuck</div>
+      <ul>
+        <li>Most reels look and read the same: <i>"X full AC installation with full warranty"</i>.</li>
+        <li>No hook in the first 2 seconds and no Urdu text on screen.</li>
+        <li>Reels are too long (70–95s) for one idea.</li>
+        <li>No ending payoff (the cold temperature reading).</li>
+        <li>7 duplicate reels were posted in one minute on 24 Sep.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout good" style="margin-top:14px">
+    <b>The plan in one line:</b> keep Sherry on camera, but turn every reel into a <b>short story with a hook, Urdu text on screen, and the thermometer at the end</b>. Post one strong reel a day on Facebook, TikTok, Instagram and YouTube, and track calls, not just views.
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="eyebrow">Sherry bhai ke liye (Roman Urdu)</div>
+    <p>Sherry bhai, aap ki videos chal rahi hain. June mein 400 views thay, September mein 8,000. Aap ka chehra aur aap ka kaam hi brand hai. Bas 4 cheezein badalni hain:</p>
+    <ol>
+      <li><b>Pehle 2 second mein masla batayein.</b> Salaam ya intro nahi, seedha: "Is Mehran ka AC 3 workshop se theek nahi hua…"</li>
+      <li><b>Video chhoti rakhein:</b> 30 se 45 second.</li>
+      <li><b>Aakhir mein thermometer dikhayein:</b> "Pehle 18 degree, ab 8 degree."</li>
+      <li><b>Customer ko saath khara karein</b> aur us se 1 line bulwayein.</li>
+    </ol>
+    <p>Baaki sab (caption, posting, TikTok, group) media manager sambhalega.</p>
+  </div>
+</section>
+
+<!-- ROLES -->
+<section id="roles">
+  <h2>Who does what</h2>
+  <div class="grid2">
+    <div class="card rolecard s">
+      <h3><span class="chip s">Sherry</span> Owner and video hero</h3>
+      <p style="color:var(--muted)">About 20 minutes a day, on camera.</p>
+      <ul>
+        <li>Pick the most interesting car of the day (problem car, old car, Mehran/Alto, unusual damage).</li>
+        <li>Record the <b>hook line first</b>, then the problem, the fix and the result.</li>
+        <li>Show the faulty part close to the camera.</li>
+        <li>End every job with the <b>vent thermometer</b> shot.</li>
+        <li>Ask the customer for one reaction line ("Pehle garmi se bura haal tha…").</li>
+        <li>Answer the top 5 comments with a short voice note or reply (builds trust).</li>
+      </ul>
+    </div>
+    <div class="card rolecard m">
+      <h3><span class="chip m">Media manager</span> Social media and marketing</h3>
+      <p style="color:var(--muted)">About 1.5 hours a day.</p>
+      <ul>
+        <li>Plan the day's video and send Sherry the hook line in the morning.</li>
+        <li>Edit: cut to 30–45s, add the red Urdu text bar, add the temperature text at the end.</li>
+        <li>Write the caption (question first) and pin the phone number as the first comment.</li>
+        <li>Post to Facebook, then TikTok, Instagram and YouTube Shorts.</li>
+        <li>Run the Facebook group and WhatsApp channel.</li>
+        <li>Log views, calls and jobs every day. Run the weekly review with Sherry.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="tbl" style="margin-top:14px"><table>
+    <thead><tr><th>Task</th><th>Sherry</th><th>Media manager</th></tr></thead>
+    <tbody>
+      <tr><td>Choose the car / story</td><td>Suggests</td><td>Decides with Sherry</td></tr>
+      <tr><td>Hook line</td><td>Says it on camera</td><td>Writes it</td></tr>
+      <tr><td>Filming</td><td>On camera</td><td>Films (or a helper with the phone)</td></tr>
+      <tr><td>Editing, text, music</td><td>—</td><td>Owns it</td></tr>
+      <tr><td>Captions, posting, cross-posting</td><td>—</td><td>Owns it</td></tr>
+      <tr><td>Replying to comments and DMs</td><td>Top 5 comments</td><td>All the rest + DMs</td></tr>
+      <tr><td>Answering calls</td><td>Owns it (asks "video kahan dekhi?")</td><td>Logs the answers</td></tr>
+      <tr><td>Weekly review (Sunday, 20 min)</td><td>Attends</td><td>Brings the numbers</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- DATA -->
+<section id="data">
+  <h2>What the data says</h2>
+  <p>Typical views per reel (median), by month. The jump came when Sherry went on camera with real jobs.</p>
+  <div class="card">
+    <div class="bars" role="img" aria-label="Median views per reel: June 415, July 407, August 3,200, September 8,000, 25 September to 6 October 5,400">
+      <div class="bar"><span class="v">415</span><div class="b" style="height:5.2%"></div></div>
+      <div class="bar"><span class="v">407</span><div class="b" style="height:5.1%"></div></div>
+      <div class="bar"><span class="v">3,200</span><div class="b" style="height:40%"></div></div>
+      <div class="bar"><span class="v">8,000</span><div class="b" style="height:100%"></div></div>
+      <div class="bar dip"><span class="v">5,400</span><div class="b" style="height:67.5%"></div></div>
+    </div>
+    <div class="bars-x"><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>25 Sep–6 Oct</span></div>
+  </div>
+
+  <h3 style="margin-top:22px">The hits, and why they hit</h3>
+  <div class="tbl"><table>
+    <thead><tr><th class="num">Views</th><th>Reel</th><th>Why it worked</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1,300,000</td><td>Modified Mehran, full alteration</td><td>Unusual car that everyone knows. Sherry talking and gesturing from second 0.</td></tr>
+      <tr><td class="num">292,000</td><td>1993 Land Cruiser compressor</td><td>Old, rare car makes people curious.</td></tr>
+      <tr><td class="num">246,000</td><td>Alto compressor bearing (31s)</td><td>One short, satisfying fix.</td></tr>
+      <tr><td class="num">157,000</td><td>Mehran AC repair</td><td>Mehran again: the car most Pakistanis have owned.</td></tr>
+      <tr><td class="num">52,000</td><td>GLI "detail explanation"</td><td>Teaching, not just "installed".</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="dodont" style="margin-top:16px">
+    <div class="card"><h3><span class="chip ok">Works</span></h3>
+      <ul><li>Sherry on camera, real job</li><li>Mehran, Alto, Cultus, Mira (mass cars)</li><li>Old, modified or rare cars</li><li>Short reels with one clear fix</li><li>Explaining <i>why</i> it broke</li></ul></div>
+    <div class="card"><h3><span class="chip no">Doesn't work</span></h3>
+      <ul><li>AI voice + marketing captions (the June–July style, about 400 views)</li><li>"Full AC installation with full warranty" on repeat</li><li>Long reels with no structure</li><li>Duplicate posts</li><li>Phone number as the first line of the caption</li></ul></div>
+  </div>
+</section>
+
+<!-- RIVALS -->
+<section id="rivals">
+  <h2>Competitors</h2>
+  <p>Latest 10 reels of each page, checked 6 Oct 2026.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Page</th><th class="num">Typical views</th><th class="num">Best reel</th><th>Their secret</th><th>Their weakness</th></tr></thead>
+    <tbody>
+      <tr><td><b>Al Qaim Autos</b></td><td class="num">61,500</td><td class="num">155,000</td><td>10–25s tips: "Your AC isn't cooling because…". Gross close-ups (black sludge).</td><td>No face, no trust, no local business</td></tr>
+      <tr><td><b>Yaseen Car AC</b> (285K followers)</td><td class="num">9,500</td><td class="num">1,800,000</td><td>Red Urdu text on screen the whole reel. Emotion and story hooks. Crowd in frame.</td><td>4 reels a day, long reels, no result shown</td></tr>
+      <tr><td><b>Auto Doctor</b></td><td class="num">7,500</td><td class="num">1,200,000</td><td>12-second DIY tricks ("AC gas check")</td><td>Random car topics, no brand</td></tr>
+      <tr><td>Afaaq Car AC (Lahore)</td><td class="num">437</td><td class="num">1,400</td><td>—</td><td>Listing captions + phone number</td></tr>
+      <tr><td>Punjab Car A.C</td><td class="num">4,200</td><td class="num">5,100</td><td>—</td><td>No reels since 2022</td></tr>
+      <tr class="you"><td>FineCool (us)</td><td class="num">8,100</td><td class="num">1,300,000</td><td>Sherry's energy, real jobs, Mehran hits</td><td>Same reel every day, long, no hook</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout" style="margin-top:14px"><b>Our edge:</b> nobody shows the thermometer result, and nobody has a weekly series. FineCool will own both: <b>"8°C" at the end of every reel</b> and <b>"Mehran Monday"</b>.</div>
+</section>
+
+<!-- FORMULA -->
+<section id="formula">
+  <h2>The FineCool video formula</h2>
+  <p>Every reel follows these 5 steps. 30–45 seconds total.</p>
+  <div class="card steps">
+    <div class="step"><span class="t">0–2s</span><div><b>Hook.</b> Sherry mid-sentence, car in frame. Red Urdu text bar on screen with the problem in 5–7 words. <div style="margin-top:6px"><span class="sticker">3 ورکشاپ سے ٹھیک نہیں ہوا</span></div></div></div>
+    <div class="step"><span class="t">2–8s</span><div><b>Stakes.</b> Why it matters: "Customer 40 hazaar compressor pe laga chuka tha…"</div></div>
+    <div class="step"><span class="t">8–25s</span><div><b>Fix.</b> Close-up of the faulty part, then the repair. One idea only.</div></div>
+    <div class="step"><span class="t">25–32s</span><div><b>Payoff.</b> Thermometer in the vent. Big text: <span class="mono">18° → 8°</span>. Customer reaction.</div></div>
+    <div class="step"><span class="t">32–36s</span><div><b>Question.</b> "Aap ki gari ka AC kitne degree pe hai? Comment karein."</div></div>
+  </div>
+
+  <h3 style="margin-top:22px">Hook bank: ready to use</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Type</th><th>Screen text (Urdu)</th><th>Sherry says (Roman Urdu)</th></tr></thead>
+    <tbody>
+      <tr><td>Damage reveal</td><td class="ur">یہ حال دیکھ کر تکلیف ہوئی</td><td>"Ye compressor dekh ke dukh hua, ye ghalti mat karna…"</td></tr>
+      <tr><td>Others failed</td><td class="ur">3 ورکشاپ گھوم کے آیا</td><td>"3 workshop ghoom ke aaya, masla sirf 500 ka nikla"</td></tr>
+      <tr><td>New-car story</td><td class="ur">ہفتہ پہلے نئی گاڑی لی</td><td>"Hafta pehle nayi gari li, aur AC ne jawab de diya"</td></tr>
+      <tr><td>Curiosity</td><td class="ur">مہران کا AC لینڈ کروزر سے ٹھنڈا؟</td><td>"Mehran ka AC Land Cruiser se zyada thanda? Dekhte hain"</td></tr>
+      <tr><td>Common mistake</td><td class="ur">یہ غلطی ہر دوسرا ڈرائیور کرتا ہے</td><td>"Ye ghalti har doosra driver karta hai"</td></tr>
+      <tr><td>DIY check</td><td class="ur">10 سیکنڈ میں گیس چیک کریں</td><td>"Gas kam hai ya nahi, 10 second mein check karo"</td></tr>
+      <tr><td>Payoff first</td><td class="ur">پہلے 18 ڈگری… اب دیکھیں</td><td>"Pehle 18 degree tha… ab dekhein"</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 style="margin-top:22px">Weekly content mix</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Day</th><th>Format</th><th class="num">Length</th></tr></thead>
+    <tbody>
+      <tr><td>Monday</td><td><b>Mehran / Alto Monday</b> (weekly series)</td><td class="num">30–45s</td></tr>
+      <tr><td>Tuesday</td><td>"AC thanda nahi? Ye wajah hai" tip (dirty part close-up)</td><td class="num">15–25s</td></tr>
+      <tr><td>Wednesday</td><td>Real job + thermometer payoff</td><td class="num">30–40s</td></tr>
+      <tr><td>Thursday</td><td>12-second DIY check</td><td class="num">10–15s</td></tr>
+      <tr><td>Friday</td><td>Curiosity car (old, modified, rare, truck)</td><td class="num">45–60s</td></tr>
+      <tr><td>Saturday</td><td>Teaching / myth-bust (local vs genuine)</td><td class="num">45–60s</td></tr>
+      <tr><td>Sunday</td><td>Customer story and reaction</td><td class="num">20–30s</td></tr>
+    </tbody>
+  </table></div>
+  <p style="color:var(--muted);margin-top:8px">Every day is car AC with Sherry on camera. Only the angle changes, so the algorithm stays clear on what the page is about.</p>
+</section>
+
+<!-- WEEK -->
+<section id="week">
+  <h2>The next 7 days</h2>
+  <p>One reel per day. Post at <b>9:00 pm Pakistan time</b> this week (a test against the usual 1 pm). Tick each day when it's posted; ticks are saved in your browser.</p>
+
+  <article class="day" data-day="1">
+    <div class="day-h"><span class="d">1</span><div class="meta"><h3>Wed 7 Oct · The payoff reel</h3><div class="k">Real job + thermometer · 35s</div></div><label class="done-toggle"><input type="checkbox" id="d1"> Posted</label></div>
+    <div class="day-b">
+      <div class="row"><span class="lab">Screen text</span><div><span class="sticker">پہلے 18 ڈگری… اب دیکھیں</span></div></div>
+      <div class="row"><span class="lab">Sherry says</span><div><ul class="lines">
+        <li><span class="ts">0s</span>"Is gari mein vent pe 18 degree aa raha tha. Garmi mein ye AC nahi, pankha hai."</li>
+        <li><span class="ts">5s</span>"Masla ye nikla…" (show the faulty part to the camera)</li>
+        <li><span class="ts">15s</span>"Theek kiya, gas pressure set kiya…"</li>
+        <li><span class="ts">25s</span>"Ab dekhein… 8 degree." (thermometer close-up)</li>
+        <li><span class="ts">30s</span>"Aap ki gari ka AC kitne degree pe hai? Comment karein."</li>
+      </ul></div></div>
+      <div class="row"><span class="lab">Shots</span><div>Thermometer before (close) · faulty part · fix (2 cuts) · thermometer after · customer smile</div></div>
+      <div class="row"><span class="lab">Caption</span><div>"Aap ki gari ka AC kitne degree pe hai? 👇 Comment karein, hum batayenge theek hai ya nahi."</div></div>
+      <div class="row"><span class="lab">Who</span><div><span class="chip s">Sherry</span> films the job · <span class="chip m">Manager</span> edits, adds the temperature text, posts at 9 pm</div></div>
+    </div>
+  </article>
+
+  <article class="day" data-day="2">
+    <div class="day-h"><span class="d">2</span><div class="meta"><h3>Thu 8 Oct · 12-second gas check</h3><div class="k">DIY trick · 12s</div></div><label class="done-toggle"><input type="checkbox" id="d2"> Posted</label></div>
+    <div class="day-b">
+      <div class="row"><span class="lab">Screen text</span><div><span class="sticker">10 سیکنڈ میں گیس چیک کریں</span></div></div>
+      <div class="row"><span class="lab">Sherry says</span><div><ul class="lines">
+        <li><span class="ts">0s</span>"AC ki gas kam hai ya nahi? 10 second mein check karo."</li>
+        <li><span class="ts">3s</span>"Engine on, AC full. Ye moti pipe pakro. Thandi hai? Gas theek hai."</li>
+        <li><span class="ts">9s</span>"Garam ya normal? Gas kam hai. Foran check karwao."</li>
+      </ul></div></div>
+      <div class="row"><span class="lab">Shots</span><div>Hand on the low-pressure pipe · close-up of the pipe · Sherry's face for the last line</div></div>
+      <div class="row"><span class="lab">Caption</span><div>"Apni gari pe try karo aur batao: pipe thandi thi ya garam? 👇"</div></div>
+      <div class="row"><span class="lab">Who</span><div><span class="chip s">Sherry</span> 5 minutes on camera · <span class="chip m">Manager</span> films and edits</div></div>
+    </div>
+  </article>
+
+  <article class="day" data-day="3">
+    <div class="day-h"><span class="d">3</span><div class="meta"><h3>Fri 9 Oct · Curiosity car</h3><div class="k">Old, modified or rare car · 45s</div></div><label class="done-toggle"><input type="checkbox" id="d3"> Posted</label></div>
+    <div class="day-b">
+      <div class="row"><span class="lab">Screen text</span><div><span class="sticker">پرانی گاڑی، نیا AC</span></div></div>
+      <div class="row"><span class="lab">Sherry says</span><div><ul class="lines">
+        <li><span class="ts">0s</span>"Ye gari [saal] model hai. Log kehte hain is mein AC nahi lag sakta."</li>
+        <li><span class="ts">5s</span>"Customer ki zid thi, chalo dekhte hain."</li>
+        <li><span class="ts">10s</span>Walk-around + the hardest part of the job</li>
+        <li><span class="ts">35s</span>"Aur ab… [X] degree." (thermometer)</li>
+        <li><span class="ts">40s</span>"Agli kaunsi purani gari ka AC dekhna chahte ho? Comment karo."</li>
+      </ul></div></div>
+      <div class="row"><span class="lab">Shots</span><div>Full car slow pan · old dashboard · fitting · thermometer · Sherry with the owner</div></div>
+      <div class="row"><span class="lab">Note</span><div>If no unusual car comes in this week, use the oldest car in the workshop. Keep a list of customers with old or modified cars and invite them for a free AC check on camera.</div></div>
+      <div class="row"><span class="lab">Who</span><div><span class="chip s">Sherry</span> on camera · <span class="chip m">Manager</span> books the car and edits</div></div>
+    </div>
+  </article>
+
+  <article class="day" data-day="4">
+    <div class="day-h"><span class="d">4</span><div class="meta"><h3>Sat 10 Oct · Local vs genuine</h3><div class="k">Teaching · 45s</div></div><label class="done-toggle"><input type="checkbox" id="d4"> Posted</label></div>
+    <div class="day-b">
+      <div class="row"><span class="lab">Screen text</span><div><span class="sticker">لوکل یا جینوئن؟ کاٹ کے دیکھیں</span></div></div>
+      <div class="row"><span class="lab">Sherry says</span><div><ul class="lines">
+        <li><span class="ts">0s</span>"Sasta coil lagwaya? Pehle andar se dekh lo."</li>
+        <li><span class="ts">5s</span>Cut both coils open on camera. "Ye local hai… ye genuine."</li>
+        <li><span class="ts">20s</span>"Farq dekho: fins, weight, welding."</li>
+        <li><span class="ts">35s</span>"Local 1 season, genuine saalon chalta hai."</li>
+        <li><span class="ts">40s</span>"Aap ki gari mein kaunsa laga hai? Comment karo."</li>
+      </ul></div></div>
+      <div class="row"><span class="lab">Shots</span><div>Two coils side by side · cutting · extreme close-up of the insides · weighing both</div></div>
+      <div class="row"><span class="lab">Who</span><div><span class="chip s">Sherry</span> explains · <span class="chip m">Manager</span> adds labels "LOCAL" and "GENUINE" on screen</div></div>
+    </div>
+  </article>
+
+  <article class="day" data-day="5">
+    <div class="day-h"><span class="d">5</span><div class="meta"><h3>Sun 11 Oct · Customer story</h3><div class="k">Reaction · 25s</div></div><label class="done-toggle"><input type="checkbox" id="d5"> Posted</label></div>
+    <div class="day-b">
+      <div class="row"><span class="lab">Screen text</span><div><span class="sticker">3 ورکشاپ کے بعد یہاں ٹھیک ہوا</span></div></div>
+      <div class="row"><span class="lab">Lines</span><div><ul class="lines">
+        <li><span class="ts">0s</span><b>Customer:</b> "3 jagah gaya, sab ne compressor badalne ka kaha."</li>
+        <li><span class="ts">5s</span><b>Sherry:</b> "Asal masla ye tha…" (part close-up)</li>
+        <li><span class="ts">15s</span>Customer feels the vent: "Wah, ab theek hai!" + thermometer</li>
+        <li><span class="ts">22s</span><b>Sherry:</b> "Aap ke saath bhi aisa hua hai? Comment karo."</li>
+      </ul></div></div>
+      <div class="row"><span class="lab">Note</span><div>Ask the customer's permission before filming. Never film a number plate without consent.</div></div>
+      <div class="row"><span class="lab">Who</span><div><span class="chip s">Sherry</span> asks the customer · <span class="chip m">Manager</span> films the reaction</div></div>
+      <div class="row"><span class="lab">Weekly review</span><div>20 minutes tonight: Sherry and the manager look at the 5 reels so far (views, comments, calls).</div></div>
+    </div>
+  </article>
+
+  <article class="day" data-day="6">
+    <div class="day-h"><span class="d">6</span><div class="meta"><h3>Mon 12 Oct · Mehran Monday, episode 1</h3><div class="k">Weekly series · 40s</div></div><label class="done-toggle"><input type="checkbox" id="d6"> Posted</label></div>
+    <div class="day-b">
+      <div class="row"><span class="lab">Screen text</span><div><span class="sticker">مہران منڈے · قسط 1</span></div></div>
+      <div class="row"><span class="lab">Sherry says</span><div><ul class="lines">
+        <li><span class="ts">0s</span>"Mehran ka AC kamzor kyun hota hai? Har Monday ek Mehran."</li>
+        <li><span class="ts">5s</span>"Is ka masla: [fault]."</li>
+        <li><span class="ts">15s</span>Fix, 2–3 cuts</li>
+        <li><span class="ts">30s</span>"Mehran mein bhi 8 degree." (thermometer)</li>
+        <li><span class="ts">35s</span>"Agle Monday kis ki Mehran? Comment mein apna area likho."</li>
+      </ul></div></div>
+      <div class="row"><span class="lab">Note</span><div>Same opening, same text style every Monday so viewers recognise the series. The comment ask ("your area") also tells us where viewers are.</div></div>
+      <div class="row"><span class="lab">Who</span><div><span class="chip s">Sherry</span> on camera · <span class="chip m">Manager</span> makes a series title template</div></div>
+    </div>
+  </article>
+
+  <article class="day" data-day="7">
+    <div class="day-h"><span class="d">7</span><div class="meta"><h3>Tue 13 Oct · "AC thanda nahi? Ye wajah hai"</h3><div class="k">Dirty-part tip · 20s</div></div><label class="done-toggle"><input type="checkbox" id="d7"> Posted</label></div>
+    <div class="day-b">
+      <div class="row"><span class="lab">Screen text</span><div><span class="sticker">AC ٹھنڈا نہیں؟ 90٪ وجہ یہ ہے</span></div></div>
+      <div class="row"><span class="lab">Sherry says</span><div><ul class="lines">
+        <li><span class="ts">0s</span>(Dirty condenser or cabin filter right in front of the camera.) "AC thanda nahi karta? Ye dekho."</li>
+        <li><span class="ts">5s</span>"Ye mitti hawa rok deti hai, compressor pe zor parta hai."</li>
+        <li><span class="ts">10s</span>Cleaning: before/after split</li>
+        <li><span class="ts">17s</span>"Har 6 mahine saaf karwao. Aap ne aakhri baar kab karwaya? 👇"</li>
+      </ul></div></div>
+      <div class="row"><span class="lab">Shots</span><div>Extreme close-up of the dirt · cleaning · clean part · thermometer if possible</div></div>
+      <div class="row"><span class="lab">Who</span><div><span class="chip s">Sherry</span> 5 minutes · <span class="chip m">Manager</span> before/after split edit</div></div>
+    </div>
+  </article>
+</section>
+
+<!-- RULES -->
+<section id="rules">
+  <h2>Rules</h2>
+  <div class="grid2">
+    <div class="card rolecard s"><h3><span class="chip s">Sherry</span> Filming rules</h3>
+      <ol>
+        <li>Start talking in the first second. No salaam, no intro.</li>
+        <li>Phone vertical, straight, at chest height. Never tilted.</li>
+        <li>Car and face both in frame.</li>
+        <li>Show the faulty part close to the lens.</li>
+        <li>Always film the thermometer before and after.</li>
+        <li>One car, one problem, one video.</li>
+        <li>Talk like talking to a friend: energy and hands.</li>
+      </ol></div>
+    <div class="card rolecard m"><h3><span class="chip m">Manager</span> Posting rules</h3>
+      <ol>
+        <li>Red Urdu text bar on screen the whole reel.</li>
+        <li>30–45s (tips 15–25s). Cut every pause.</li>
+        <li>Caption line 1 is a question. Phone number goes in the pinned comment.</li>
+        <li>One reel a day. <b>Never post duplicates.</b></li>
+        <li>Post the same reel to TikTok, Instagram and YouTube Shorts.</li>
+        <li>Reply to every comment in the first hour.</li>
+        <li>Only car AC and car care. No memes, no unrelated trends.</li>
+      </ol></div>
+  </div>
+  <h3 style="margin-top:22px">Caption template</h3>
+  <div class="copybox"><pre id="capTpl">[Question about the viewer's car] 👇
+[One line about what happened in the video]
+
+Fine Cool Car AC · Multan · Full warranty
+#caracrepair #carac #multan #mehran #alto #acnotcooling #pakistan</pre><button type="button" data-copy="capTpl">Copy</button></div>
+  <h3 style="margin-top:18px">Pinned comment</h3>
+  <div class="copybox"><pre id="pinTpl">AC ka masla? WhatsApp / call: 0300-0873036
+📍 Fine Cool Car AC, Multan
+Multan Car Owners group: [group link]</pre><button type="button" data-copy="pinTpl">Copy</button></div>
+</section>
+
+<!-- BENEFIT -->
+<section id="benefit">
+  <h2>What it gives: three scenarios</h2>
+  <p>These are targets based on FineCool's own past numbers (8,000 typical, 4 reels over 150K in two months), not guarantees. We check against them after 30 days.</p>
+  <div class="scn">
+    <div class="card low"><div class="eyebrow">If we only fix the basics</div><div class="big mono">8–12K</div><p>typical views per reel. Hook text, short reels and the payoff alone bring the page back to its September level and slightly above.</p></div>
+    <div class="card mid"><div class="eyebrow">Expected, plan followed 30 days</div><div class="big mono">15–25K</div><p>typical views, plus 2–4 reels over 100K a month from Mehran Monday and curiosity cars. TikTok and Shorts add extra reach for no extra filming.</p></div>
+    <div class="card high"><div class="eyebrow">Best case</div><div class="big mono">50K+</div><p>typical views if the tip and series formats take off, like Al Qaim's 61K typical. One more 1M+ reel becomes likely.</p></div>
+  </div>
+  <div class="callout" style="margin-top:14px">
+    <b>Views are not the goal; customers are.</b> Every call gets one question: <i>"Video kahan dekhi?"</i> After 30 days we'll know exactly how many jobs each video format brings. Then we do more of what pays.
+  </div>
+  <h3 style="margin-top:22px">What if it doesn't work?</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Situation after 2 weeks</th><th>What we do</th></tr></thead>
+    <tbody>
+      <tr><td>Views up, calls flat</td><td>Add "Multan" and the area in every caption. Push the group and WhatsApp channel. Boost the best reel locally (Multan only, small budget).</td></tr>
+      <tr><td>Views flat</td><td>Check the hooks: are they a problem or a story? Shorten reels by 10s. Try more curiosity cars.</td></tr>
+      <tr><td>One format clearly wins</td><td>Post it 3× a week and drop the weakest format.</td></tr>
+      <tr><td>Calls up, too many to handle</td><td>Book slots by WhatsApp, raise prices on rush days, consider a second technician.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- GROW -->
+<section id="grow">
+  <h2>New opportunities</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Opportunity</th><th>Effort</th><th>Payoff</th><th>When</th></tr></thead>
+    <tbody>
+      <tr><td><b>TikTok + Instagram + YouTube Shorts:</b> repost every reel</td><td><span class="chip ok">Low</span></td><td>2–3× total reach</td><td>This week</td></tr>
+      <tr><td><b>Facebook group "Multan Car Owners – AC & Car Care Help":</b> local leads</td><td><span class="chip w">Medium</span></td><td>Local customers, free lead list</td><td>Week 2</td></tr>
+      <tr><td><b>WhatsApp channel</b> for past customers</td><td><span class="chip ok">Low</span></td><td>Repeat jobs, pre-summer service rush</td><td>Week 2</td></tr>
+      <tr><td><b>Winter services</b> (heater, AC smell, fogging, compressor noise, "service before summer" offer)</td><td><span class="chip ok">Low</span></td><td>Keeps work coming Nov–Feb</td><td>From 1 Nov</td></tr>
+      <tr><td><b>Local boost:</b> best reel each month, Multan radius only</td><td><span class="chip ok">Low</span></td><td>Puts the best video in front of nearby car owners</td><td>Month 2</td></tr>
+      <tr><td><b>Parts sales</b> (genuine coils, compressors) via the "Auto Parts" name</td><td><span class="chip w">Medium</span></td><td>Extra income from viewers outside Multan</td><td>Month 2–3</td></tr>
+      <tr><td><b>Brand deals:</b> parts suppliers or AC gas brands pay for mentions</td><td><span class="chip w">Medium</span></td><td>Sponsorship income once views are steady</td><td>At 20K+ typical views</td></tr>
+      <tr><td><b>Fleet contracts:</b> rent-a-car, vans, trucks</td><td><span class="chip w">Medium</span></td><td>Steady monthly work</td><td>Month 2</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout red" style="margin-top:14px"><b>Not now:</b> a second Facebook page. It splits the effort and restarts from zero. We'll look again after 60 days.</div>
+</section>
+
+<!-- TRACK -->
+<section id="track">
+  <h2>Tracking: what to write down every day</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Date</th><th>Reel topic</th><th>Format</th><th class="num">Views 24h</th><th class="num">Views 7d</th><th class="num">Comments</th><th class="num">Calls / WhatsApps</th><th class="num">Jobs</th></tr></thead>
+    <tbody>
+      <tr><td>7 Oct</td><td>Payoff reel</td><td>Real job</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>8 Oct</td><td>Gas check</td><td>DIY</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>…</td><td></td><td></td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num"></td></tr>
+    </tbody>
+  </table></div>
+  <div class="grid2" style="margin-top:14px">
+    <div class="card"><div class="eyebrow">30-day targets</div>
+      <ul><li>Typical views per reel: <b class="mono">15,000</b></li><li>Reels over 100K: <b class="mono">2+</b></li><li>Group members: <b class="mono">300</b></li><li>Calls from videos logged every day</li></ul></div>
+    <div class="card"><div class="eyebrow">Sunday review (20 min)</div>
+      <ol><li>Top reel and bottom reel of the week: why?</li><li>Which format brought calls?</li><li>Next week: double the winner, drop the loser.</li><li>Pick next Monday's Mehran.</li></ol></div>
+  </div>
+</section>
+
+<footer>
+  Based on FineCool Car AC's 108 reels (23 Jun – 6 Oct 2026) and the latest reels of Yaseen Car AC, Al Qaim Autos, Auto Doctor, Afaaq Car AC, Punjab Car A.C and Abdullah Mechanic, checked 6 Oct 2026. View counts are Facebook's reel counts on that date.
+</footer>
+</div>
+
+<script>
+(function(){
+  function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+  document.querySelectorAll('.done-toggle input').forEach(function(cb){
+    var day=cb.closest('.day');
+    if(store('fc-'+cb.id)==='1'){cb.checked=true;day.classList.add('is-done')}
+    cb.addEventListener('change',function(){day.classList.toggle('is-done',cb.checked);store('fc-'+cb.id,cb.checked?'1':'0')});
+  });
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var el=document.getElementById(btn.dataset.copy),txt=el.textContent;
+      function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected, press copy'}
+      try{navigator.clipboard.writeText(txt).then(function(){btn.textContent='Copied'},sel)}catch(e){sel()}
+      setTimeout(function(){btn.textContent='Copy'},2500);
+    });
+  });
+})();
+</script>
